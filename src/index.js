@@ -1,15 +1,16 @@
-import Register from './components/user/Register';
-import Profile from './components/user/Profile';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from './components/user/Login';
-import ReactDOM from 'react-dom/client';
-import { App } from './App';
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import ReactDOM from 'react-dom/client';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
+
+import Register from './components/user/Register';
+import Profile from './components/user/Profile';
+import Login from './components/user/Login';
+import { App } from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

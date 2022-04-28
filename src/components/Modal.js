@@ -3,28 +3,23 @@ import React from 'react';
 import '../App.css'
 
 export const Modal = (props) => {
-    const { closeModal } = props;
-
-    const closeIcon = () => (
-        <AiOutlineClose
-        onClick={closeModal}
-        style={{
-            cursor:'pointer',
-            padding: '10px',
-            border: 0,
-            position: 'absolute',
-            top: '0.3rem',
-            right: '0.5rem',
-        }}
-        />
-    );
-
-  return (
-    <div className='modal'>
-        <div className='modal-content'>
-            { closeIcon() }
-            { props.children }
+    return (
+        <div className='modal'>
+            <div className='modal-content'>
+                <AiOutlineClose 
+                    onClick={() => props.history.goBack()}
+                    style={{
+                    cursor:'pointer',
+                    padding: '10px',
+                    border: 0,
+                    position: 'absolute',
+                    top: '0.3rem',
+                    float: 'right',
+                    color: 'black', 
+                    }}
+                />
+                { props.children }
+            </div>
         </div>
-    </div>
-  )
-}
+    );
+};

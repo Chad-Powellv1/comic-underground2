@@ -2,10 +2,12 @@ import { useGlobalState } from "../../context/GlobalState";
 import AuthService from "../../services/auth.service";
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from "react";
-import { Modal } from "../Modal";
-import jwtDecode from "jwt-decode";
 
-const Login = () => {
+
+import jwtDecode from "jwt-decode";
+import { Modal } from "../Modal";
+
+const Login = ({isOpen, setIsOpen, closeModal}) => {
     let navigate = useNavigate();
 
     const [state, dispatch] = useGlobalState();
@@ -43,7 +45,7 @@ const Login = () => {
                         <div>
                             <label htmlFor="username" style={{
                                 textAlign:'center',
-                                marginLeft:'4rem',
+                                marginLeft:'3rem',
                                 paddingRight:'0.5rem',
                                 paddingBottom:'1.25rem',
                                 }}
@@ -59,7 +61,7 @@ const Login = () => {
                         <div>
                             <label htmlFor="pass" style={{
                                 textAlign:'center',
-                                marginLeft:'4rem',
+                                marginLeft:'3rem',
                                 paddingRight:'0.8rem',
                                 paddingBottom:'0.75rem',
                                 }}>Password:</label>
