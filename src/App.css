@@ -104,7 +104,7 @@
   /* ---------------------*/
   
   .header{
-    height: 75px;
+    height: 65px;
     display: flex;
     align-items: center;
     background-color: var(--clr-light);
@@ -160,9 +160,9 @@
   
   .header-link {
     display: flex;
-    justify-content: right !important;
-    align-items: right !important;
-    margin-top: 0.5rem;
+    justify-content: right;
+    align-items: right;
+    margin-top: 0.7rem;
     margin-right: 2rem;
     font-size: var(--fs-300);
     font-family: var(--ff-arial);
@@ -170,23 +170,24 @@
   }
   
   .header-left {
-    align-items: center;
-    display: grid;
+    display: flex;
+    justify-content: right;
+    align-items: right;
     grid-gap: 1rem;
     grid-template-columns: max-content max-content;
-    padding-left: 4rem;
+    padding-left: 2rem;
     background-color: var(--clr-light);
-    position: sticky;
     top: 0;
+
   }
   
   .header-right {
-    align-items: center;
-    display: grid;
+    display: flex;
+    justify-content: left;
+    align-items: left;
     font-size: 0.875rem;
     grid-gap: 0.25rem;
     grid-template-columns: max-content max-content max-content;
-    justify-content: right;
     padding-right: 2rem;
   }
   
@@ -211,4 +212,24 @@
     justify-content: center;
     font-family: var(--ff-arial);
     font-size: var(--fs-300);
+  }
+
+  .modal {
+    background-color: var(--clr-gray);
+    display: block; 
+    height: 100%; 
+    left: 0;
+    position: fixed; 
+    top: 0;
+    width: 100%; 
+    z-index: 2; 
+  }
+
+  .modal-content {
+    background-color: var(--clr-light);
+    margin: 15% auto;
+    margin-top: 12%;
+    width: 30rem;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    padding: 1.25rem
   }

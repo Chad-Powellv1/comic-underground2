@@ -1,10 +1,11 @@
+import { AiOutlineSearch } from 'react-icons/ai';
 import comic from '../assets/comic.png';
 import { Link } from 'react-router-dom';
-import { BsSearch } from 'react-icons/bs';
 import React from 'react';
 import '../App.css';
 
 export const Navbar = () => {
+
   return (
     <>
         <div className='header-left'>
@@ -26,7 +27,7 @@ export const Navbar = () => {
         <img className='header-logo' src={comic} alt='Comic Underground icon' />
             <div className='header-search'>
             <input className='header-searchInput' type='text' placeholder="Search"/>
-            <BsSearch className='header-searchIcon' />
+            <AiOutlineSearch className='header-searchIcon' />
             </div>
         </div>
     </>
