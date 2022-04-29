@@ -8,13 +8,16 @@ export const Navbar = () => {
 
   return (
     <>
+        
         <div className='header-left'>
             <div className='header-right'>
+
                 <div className='header-wrapper'>
                     <span>Hello, </span>
                 </div>
+                
             </div>
-        
+         
         <div className='header-link'>
             <Link to='/login'style={{textDecoration: 'none', fontFamily: 'var(--ff-arial)', }}><span className="header-sell">Login</span></Link>
             <Link to='/register' style={{textDecoration: 'none', fontFamily: 'var(--ff-arial)'}}><span className="header-sell">Register</span></Link>
