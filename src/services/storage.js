@@ -1,4 +1,4 @@
-export const Save = ({ key, payload }) => {
+export const save = ({ key, payload }) => {
     localStorage.setItem(key,payload);
 }
 
