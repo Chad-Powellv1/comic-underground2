@@ -1,25 +1,16 @@
-import { AiOutlineClose } from "react-icons/ai";
-import React from 'react';
-import '../App.css'
+import { useState } from 'react';
 
-export const Modal = (props) => {
+const withModal = ModalComponent => WrapperComponent => {
+  return function (props) { 
+    const [isOpen, setIsOpen] = useState(false);
+    
     return (
-        <div className='modal'>
-            <div className='modal-content'>
-                <AiOutlineClose 
-                    onClick={() => props.history.goBack()}
-                    style={{
-                    cursor:'pointer',
-                    padding: '10px',
-                    border: 0,
-                    position: 'absolute',
-                    top: '0.3rem',
-                    float: 'right',
-                    color: 'black', 
-                    }}
-                />
-                { props.children }
-            </div>
-        </div>
-    );
-};
+      <>
+        <WrapperComponent toggleModal={setIsOpen} {...props} />
+        {isOpen && <ModalComponent toggleModal={setIsOpen} />}
+      </>
+    )
+  }
+}
+
+export default withModal;
