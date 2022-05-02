@@ -5,12 +5,23 @@ const withModal = ModalComponent => WrapperComponent => {
     const [isOpen, setIsOpen] = useState(false);
     
     return (
-      <>
-        <WrapperComponent toggleModal={setIsOpen} {...props} />
-        {isOpen && <ModalComponent toggleModal={setIsOpen} />}
-      </>
-    )
-  }
-}
 
-export default withModal;
+        <div className='modal'>
+            <div className='modal-content'>
+                <AiOutlineClose 
+                    onClick={() => props.history.goBack()}
+                    style={{
+                    cursor:'pointer',
+                    padding: '10px',
+                    border: 0,
+                    position: 'absolute',
+                    top: '0.3rem',
+                    float: 'right',
+                    color: 'black', 
+                    }}
+                />
+                { props.children }
+            </div>
+        </div>
+    );
+};
