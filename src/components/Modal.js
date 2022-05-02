@@ -1,9 +1,11 @@
-import { AiOutlineClose } from "react-icons/ai";
-import React from 'react';
-import '../App.css'
+import { useState } from 'react';
 
-export const Modal = (props) => {
+const withModal = ModalComponent => WrapperComponent => {
+  return function (props) { 
+    const [isOpen, setIsOpen] = useState(false);
+    
     return (
+
         <div className='modal'>
             <div className='modal-content'>
                 <AiOutlineClose 
@@ -23,4 +25,3 @@ export const Modal = (props) => {
         </div>
     );
 };
-  
