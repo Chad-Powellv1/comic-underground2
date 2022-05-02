@@ -25,7 +25,7 @@ const Login = ({isOpen, setIsOpen, closeModal}) => {
                     currentUserToken: resp.access,
                     currentUser: data
                 })
-                navigate('/profile')
+                navigate('/')
             });
     }
 

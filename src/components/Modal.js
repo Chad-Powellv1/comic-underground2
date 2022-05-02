@@ -2,12 +2,11 @@ import { AiOutlineClose } from "react-icons/ai";
 import React from 'react';
 import '../App.css'
 
-export const Modal = (props) => {
+export const Modal = ({children, handleClose}) => {
     return (
         <div className='modal'>
-            <div className='modal-content'>
-                <AiOutlineClose 
-                    onClick={() => props.history.goBack()}
+             <AiOutlineClose 
+                    onClick={handleClose}
                     style={{
                     cursor:'pointer',
                     padding: '10px',
@@ -15,10 +14,10 @@ export const Modal = (props) => {
                     position: 'absolute',
                     top: '0.3rem',
                     float: 'right',
-                    color: 'black', 
                     }}
                 />
-                { props.children }
+            <div className='modal-content'>
+                { children }
             </div>
         </div>
     );
