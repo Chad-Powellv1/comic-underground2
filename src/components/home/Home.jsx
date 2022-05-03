@@ -11,7 +11,8 @@ export function Slider() {
 	const [comics, setComics] = useState([]);
 
 	useEffect(() => {
-		request({ url: AUCTION, method: 'get' }).then(resp => {
+		request({ url: AUCTION, method: 'get' })
+		.then(resp => {
 			setComics(resp.data);
 		});
 	}, []);
@@ -50,9 +51,9 @@ export function Slider() {
 				>
 					<Card.Img src={comic.items[0].details[0].cover_image.cover_image.replace('http://localhost:8000', 'https://8000-chadpowellv1-comicapi-tiv0x3tc1cg.ws-us43.gitpod.io/')} />
 					<Card.Body>
-						<Card.Title className='text-center font1'>{comic.items[0].title}</Card.Title>
-						<Card.Text className='text-center font2'>Issue No: {comic.items[0].details[0].issue_number}</Card.Text>
-						<Card.Text className='text-center font2'>Current Bid: {comic.minimum_bid}</Card.Text>
+						<Card.Title className='text-center'>{comic.items[0].title}</Card.Title>
+						<Card.Text className='text-center'>Issue No: {comic.items[0].details[0].issue_number}</Card.Text>
+						<Card.Text className='text-center'>Current Bid: {comic.minimum_bid}</Card.Text>
 					</Card.Body>
 				</Card>
 			</SplideSlide>
