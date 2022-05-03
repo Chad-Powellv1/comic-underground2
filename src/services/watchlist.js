@@ -1,6 +1,6 @@
 import * as uiService from './ui';
 import * as storageService from './storage';
-import * as STORAGE_KEYS from '../constants/storage-keys';
+import * as STORAGE_KEYS from '../constants/storage';
 
 export const remove = item => {
     let watchlist = JSON.parse(storageService.get(STORAGE_KEYS.WATCHLIST));

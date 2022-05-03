@@ -7,6 +7,7 @@ import {
 import { Navbar } from './components/Navbar';
 import { Outlet } from "react-router-dom";
 import { Home } from './components/home/Home';
+import { Details } from './components/Details';
 import Login from './components/user/Login';
 import Register from './components/user/Register';
 import Profile from './components/user/Profile';
@@ -20,6 +21,7 @@ export const App = () => {
         <Navbar />
         <Home />
         <Routes>
+          <Route exact path='/detail' component={<Details />} />
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/register' element={<Register />} />
           <Route exact path='/profile' element={<Profile />} />
