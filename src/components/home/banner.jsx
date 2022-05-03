@@ -7,7 +7,7 @@ export const Banner = () => {
         <img src={image} alt='banner'
             style={{
                 width:'100%',
-                height:'25rem',
+                height:'15rem',
             }}  />
         <div className='centered text-centered'>
             <h1 className='text'>Comic Underground</h1>
