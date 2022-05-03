@@ -5,14 +5,14 @@ import React, { useState } from "react";
 
 
 import jwtDecode from "jwt-decode";
-import { Modal } from "../Modal";
+import { Modal } from '../Modal';
 
-const Login = ({isOpen, setIsOpen, closeModal}) => {
+const Login = ({isOpen,setIsOpen, close}) => {
     let navigate = useNavigate();
-
     const [state, dispatch] = useGlobalState();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -25,12 +25,12 @@ const Login = ({isOpen, setIsOpen, closeModal}) => {
                     currentUserToken: resp.access,
                     currentUser: data
                 })
-                navigate('/profile')
+                navigate('/')
             });
     }
 
     return (
-        <Modal>
+        <Modal isOpen={isOpen} close={() => setIsOpen(false)}>
         <div className="login">
             <div className="login-content">
                 <div className="login-container">

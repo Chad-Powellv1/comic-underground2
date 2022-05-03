@@ -5,6 +5,9 @@
 	font-family: 'patrick';
 	src: url('./assets/PatrickHandSC-Regular.ttf') format('truetype');
 }
+body {
+	background-color: var(--clr-light);
+}
 :root {
 	--clr-light: #ded9c3;
 	--clr-blue: #50a1be;
@@ -154,6 +157,7 @@ select {
 	grid-template-columns: repeat(2, 1fr);
 	padding: 0.25rem 0;
 	width: 100%;
+	z-index: 1;
 }
 
 .header-link {
@@ -241,6 +245,7 @@ select {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	text-shadow: 2px 2px #0a0a0a;
+	z-index: 0;
 }
 
 .text2 {
@@ -253,4 +258,17 @@ select {
 	left: 50%;
 	transform: translate(-50%);
 	text-shadow: 2px 2px #0a0a0a;
+	z-index: 0;
+}
+
+.card-body {
+	padding: 10px !important;
+}
+
+.card-title {
+	padding-bottom: 0.10rem !important;
+}
+
+.splide {
+	background-color: var(--clr-light);
 }
