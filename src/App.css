@@ -169,6 +169,7 @@ select {
 	font-size: var(--fs-300);
 	font-family: var(--ff-arial);
 	color: black;
+	margin-left: auto;
 }
 
 .header-left {
@@ -273,7 +274,7 @@ select {
 	background-color: var(--clr-light);
 }
 
-.fancy {
+/* .fancy {
 	max-width: 500px;
 	margin: 10px;
 	padding: 0.2rem 1.25rem;
@@ -285,7 +286,7 @@ select {
 	background-size: 12px, 100%;
 	border: 0.4rem solid #000;
 	/* position relative for the :before pseudo element */
-	position: relative;
+	/* position: relative;
 	cursor: pointer;
 }
 
@@ -305,7 +306,7 @@ select {
 	width: 100%;
 	height: 100%;
 	/* with the same texture, but different color, for both the texture and the background */
-	background: url('./assets/button.png'),
+	/* background: url('./assets/button.png'),
 	  #000;
 	background-size: 12px, 100%;
 	border: 0.4rem solid #000;
@@ -316,10 +317,9 @@ select {
 .fancy:hover::before {
 	left: -6px;
 	top: -6px;
-}
+}   */
 
 .item-image {
-	width: 100%;
 	height: 35rem;
     background-color: white;
     box-shadow: -0.35rem 0.35rem 1.5rem 0.3rem #a1a1a1;
@@ -334,15 +334,21 @@ select {
 
 .item-title {
 	height: 35px;
-	margin-top: 5rem;
-	margin-left: 5rem;
-	font-size: var(--fs-400);
+	margin-top: 7rem;
+	margin-left: 3rem;
+	font-size: var(--fs-600);
     font-weight: bold;
     color: rgb(0, 0, 0);
     display: inline;
 }
 
+.col-item-info{
+	height: 315px;
+
+}
 .item-time {
+	margin-top: 1.5rem;
+	margin-left: 8rem;
 	font-size: 1.3rem;
     width: 100%;
     display: flex;
@@ -353,24 +359,29 @@ select {
 
 .item-issue {
 	height: 35px;
-	margin-top: 2rem;
+	margin-top: 1rem;
+	margin-left: 2rem;
+}
 
+.item-coverDate {
+	margin-left: 2rem
 
 }
 
 .item-era {
-
+	margin-top: 0.5rem;
+	margin-left: 2rem;
 }
  
 .item-grade {
-
+	margin-top: 0.5rem;
+	margin-left: 2rem
 }
 
-.item-coverDate {
-
-}
 
 .bid-block {
+	margin-top: .05rem;
+	height: 225px;
 	border: 1px solid #ccc;
     border-radius: 0.3rem;
     background-color: #e2e2e2;
@@ -378,5 +389,42 @@ select {
     display: flex;
     flex-direction: row;
     padding: 1.7rem 0 0 0;
-    box-shadow: 4px 4px 1px #eee;
+    box-shadow: 4px 4px 1px rgba(77, 77, 77, 0.634);
+}
+
+.current-bid {
+	margin-left: 2rem;
+	padding-bottom: 1.2rem;
+}
+
+.enter-bid {
+	margin-left: 2rem;
+	padding-bottom: 0.5rem;
+	padding-right: .5rem;
+}
+
+.min-bid{
+	margin-left: 9.5rem;
+}
+
+.right-form {
+	float: right;
+}
+
+.place-bid {
+	margin-top: 1.5rem;
+	margin-bottom: 0.5rem;
+	background-color: var(--clr-blue);
+	color: white;
+	float: right;
+}
+
+.more-info {
+	background-color: var(--clr-blue);
+	margin-top: 3rem;
+	margin-left: 10rem;
+}
+
+.more-info:hover {
+	background-color: var(--clr-gray);
 }

@@ -4,12 +4,10 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 
 export const Navbar = () => {
-
-
   return (
     <>
-        <div className='header-left'>
-            <div className='header-right'>
+        <div className='d-flex flex-row ml-3 p-3'>
+            <div className='mr-auto'>
                 <div className='header-wrapper'>
                     <span>Hello, </span>
                 </div>
