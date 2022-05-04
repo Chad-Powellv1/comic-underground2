@@ -272,3 +272,111 @@ select {
 .splide {
 	background-color: var(--clr-light);
 }
+
+.fancy {
+	max-width: 500px;
+	margin: 10px;
+	padding: 0.2rem 1.25rem;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 2rem;
+	letter-spacing: 0.1rem;
+	background: url('./assets/button.png'),#fff;
+	background-size: 12px, 100%;
+	border: 0.4rem solid #000;
+	/* position relative for the :before pseudo element */
+	position: relative;
+	cursor: pointer;
+}
+
+.fancy--highlight {
+	background: url('./assets/button.png'),
+    var(--clr-yellow);
+  background-size: 13px, 100%;
+  font-weight: 700;
+
+}
+
+.fancy::before {
+	content: "";
+	position: absolute;
+	left: -1rem;
+	top: 0.15rem;
+	width: 100%;
+	height: 100%;
+	/* with the same texture, but different color, for both the texture and the background */
+	background: url('./assets/button.png'),
+	  #000;
+	background-size: 12px, 100%;
+	border: 0.4rem solid #000;
+	z-index: -5;
+	transition: all 500ms ease;
+}
+
+.fancy:hover::before {
+	left: -6px;
+	top: -6px;
+}
+
+.item-image {
+	width: 100%;
+	height: 35rem;
+    background-color: white;
+    box-shadow: -0.35rem 0.35rem 1.5rem 0.3rem #a1a1a1;
+    border: 1xp solid #ccc;
+    border-radius: 0.3rem;
+	margin-top: 2rem;
+    margin-bottom: 3rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.item-title {
+	height: 35px;
+	margin-top: 5rem;
+	margin-left: 5rem;
+	font-size: var(--fs-400);
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    display: inline;
+}
+
+.item-time {
+	font-size: 1.3rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+	top: 50%
+}
+
+
+.item-issue {
+	height: 35px;
+	margin-top: 2rem;
+
+
+}
+
+.item-era {
+
+}
+ 
+.item-grade {
+
+}
+
+.item-coverDate {
+
+}
+
+.bid-block {
+	border: 1px solid #ccc;
+    border-radius: 0.3rem;
+    background-color: #e2e2e2;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    padding: 1.7rem 0 0 0;
+    box-shadow: 4px 4px 1px #eee;
+}

@@ -6,6 +6,7 @@ import '@splidejs/react-splide/css';
 import request from '../../services/api.request';
 import { AUCTION } from '../../services/auth.constants';
 import '../../App.css';
+import { Link } from 'react-router-dom';
 
 export function Slider() {
 	const [comics, setComics] = useState([]);
@@ -49,7 +50,9 @@ export function Slider() {
 						marginRight: 'auto',
 					}}
 				>
-					<Card.Img src={comic.items[0].details[0].cover_image.cover_image.replace('http://localhost:8000', 'https://8000-chadpowellv1-comicapi-tiv0x3tc1cg.ws-us43.gitpod.io/')} />
+	
+						<Card.Img src={comic.items[0].details[0].cover_image.cover_image.replace('http://localhost:8000', 'https://8000-chadpowellv1-comicapi-tiv0x3tc1cg.ws-us43.gitpod.io/')} />
+					
 					<Card.Body>
 						<Card.Title className='text-center'>{comic.items[0].title}</Card.Title>
 						<Card.Text className='text-center'>Issue No: {comic.items[0].details[0].issue_number}</Card.Text>
