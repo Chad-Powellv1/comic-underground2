@@ -107,7 +107,7 @@ select {
 /* ---------------------*/
 
 .header {
-	height: 65px;
+	height: 35px;
 	display: flex;
 	align-items: center;
 	background-color: var(--clr-light);
@@ -120,6 +120,7 @@ select {
 	display: flex;
 	background-color: var(--clr-light);
 	position: sticky;
+	z-index: 1000;
 }
 
 .header-logo {
@@ -169,6 +170,7 @@ select {
 	font-size: var(--fs-300);
 	font-family: var(--ff-arial);
 	color: black;
+	margin-left: auto;
 }
 
 .header-left {
@@ -271,4 +273,127 @@ select {
 
 .splide {
 	background-color: var(--clr-light);
+}
+
+.splide__slide img {
+	height: 365px !important;
+}
+
+.item-image {
+	height: 40rem;
+    background-color: white;
+    box-shadow: -0.35rem 0.35rem 1.5rem 0.3rem #a1a1a1;
+    border: 1xp solid #ccc;
+    border-radius: 0.3rem;
+	margin-top: 2rem;
+    margin-bottom: 3rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+	object-fit: contain;
+}
+
+.item-title {
+	height: 35px;
+	margin-top: 7rem;
+	margin-left: 3rem;
+	font-size: var(--fs-600);
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    display: inline;
+}
+
+.col-item-info{
+	height: 315px;
+
+}
+.item-time {
+	margin-top: 1.5rem;
+	margin-left: 8rem;
+	font-size: 1.3rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+	top: 50%
+}
+
+
+.item-issue {
+	height: 35px;
+	margin-top: 1rem;
+	margin-left: 2rem;
+}
+
+.item-coverDate {
+	margin-left: 2rem
+
+}
+
+.item-era {
+	margin-top: 0.5rem;
+	margin-left: 2rem;
+}
+ 
+.item-grade {
+	margin-top: 0.5rem;
+	margin-left: 2rem
+}
+
+
+.bid-block {
+	margin-top: .05rem;
+	height: 225px;
+	border: 1px solid #ccc;
+    border-radius: 0.3rem;
+    background-color: #e2e2e2;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    padding: 1.7rem 0 0 0;
+    box-shadow: 4px 4px 1px rgba(77, 77, 77, 0.634);
+}
+
+.current-bid {
+	margin-left: 2rem;
+	padding-bottom: 1.2rem;
+}
+
+.enter-bid {
+	margin-left: 2rem;
+	padding-bottom: 0.5rem;
+	padding-right: .5rem;
+}
+
+.min-bid{
+	margin-left: 9.5rem;
+}
+
+.right-form {
+	float: right;
+}
+
+.place-bid {
+	margin-top: 1.5rem;
+	margin-bottom: 0.5rem;
+	background-color: var(--clr-blue);
+	color: white;
+	float: right;
+}
+
+.more-info {
+	margin-top: 3rem;
+	margin-left: 10rem;
+}
+
+
+.links {
+	text-decoration: none;
+	color: black;
+	font-family: var(--ff-arial);
+}
+
+.links:hover {
+	text-decoration: none;
+	color: black;
+	font-family: var(--ff-arial);
 }

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Banner } from './banner';
+import { Banner } from './Banner';
 import { Card } from 'react-bootstrap';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import request from '../../services/api.request';
 import { AUCTION } from '../../services/auth.constants';
 import '../../App.css';
+import { Link } from 'react-router-dom';
 
 export function Slider() {
 	const [comics, setComics] = useState([]);
@@ -41,6 +42,7 @@ export function Slider() {
 	let auction = comics.map(comic => {
 		return (
 			<SplideSlide key={comic.id}>
+				<Link to={`/details/${comic.id}`} className='links'>
 				<Card
 					style={{
 						width: '15rem',
@@ -49,13 +51,18 @@ export function Slider() {
 						marginRight: 'auto',
 					}}
 				>
-					<Card.Img src={comic.items[0].details[0].cover_image.cover_image.replace('http://localhost:8000', 'https://8000-chadpowellv1-comicapi-tiv0x3tc1cg.ws-us43.gitpod.io/')} />
+	
+						<Card.Img className='image-card'
+						src={comic.items[0].details[0].cover_image.cover_image.replace('http://localhost:8000', 'https://8000-chadpowellv1-comicapi-tiv0x3tc1cg.ws-us44.gitpod.io/')} />
+					
 					<Card.Body>
 						<Card.Title className='text-center'>{comic.items[0].title}</Card.Title>
 						<Card.Text className='text-center'>Issue No: {comic.items[0].details[0].issue_number}</Card.Text>
 						<Card.Text className='text-center'>Current Bid: {comic.minimum_bid}</Card.Text>
+						{/* <a href={`/details/${comic.id}`}>Take me to {comic.id}</a> */}
 					</Card.Body>
 				</Card>
+				</Link>
 			</SplideSlide>
 		);
 	});
