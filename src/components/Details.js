@@ -5,7 +5,6 @@ import { Container, Row, Col, Popover, OverlayTrigger, Button, Form } from 'reac
 import { useParams } from 'react-router';
 
 
-
 export const Details = () => {
   const { auction } = useParams(null);
   const [currentAuction, setCurrentAuction] = useState({});
