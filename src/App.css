@@ -165,7 +165,7 @@ select {
 	display: flex;
 	justify-content: right;
 	align-items: right;
-	margin-top: 0.7rem;
+	margin-top: 0.5rem;
 	margin-right: 2rem;
 	font-size: var(--fs-300);
 	font-family: var(--ff-arial);
