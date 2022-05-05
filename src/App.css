@@ -107,7 +107,7 @@ select {
 /* ---------------------*/
 
 .header {
-	height: 65px;
+	height: 35px;
 	display: flex;
 	align-items: center;
 	background-color: var(--clr-light);
@@ -120,6 +120,7 @@ select {
 	display: flex;
 	background-color: var(--clr-light);
 	position: sticky;
+	z-index: 1000;
 }
 
 .header-logo {
@@ -274,53 +275,12 @@ select {
 	background-color: var(--clr-light);
 }
 
-/* .fancy {
-	max-width: 500px;
-	margin: 10px;
-	padding: 0.2rem 1.25rem;
-	text-align: center;
-	text-transform: uppercase;
-	font-size: 2rem;
-	letter-spacing: 0.1rem;
-	background: url('./assets/button.png'),#fff;
-	background-size: 12px, 100%;
-	border: 0.4rem solid #000;
-	/* position relative for the :before pseudo element */
-	/* position: relative;
-	cursor: pointer;
+.splide__slide img {
+	height: 365px !important;
 }
-
-.fancy--highlight {
-	background: url('./assets/button.png'),
-    var(--clr-yellow);
-  background-size: 13px, 100%;
-  font-weight: 700;
-
-}
-
-.fancy::before {
-	content: "";
-	position: absolute;
-	left: -1rem;
-	top: 0.15rem;
-	width: 100%;
-	height: 100%;
-	/* with the same texture, but different color, for both the texture and the background */
-	/* background: url('./assets/button.png'),
-	  #000;
-	background-size: 12px, 100%;
-	border: 0.4rem solid #000;
-	z-index: -5;
-	transition: all 500ms ease;
-}
-
-.fancy:hover::before {
-	left: -6px;
-	top: -6px;
-}   */
 
 .item-image {
-	height: 35rem;
+	height: 40rem;
     background-color: white;
     box-shadow: -0.35rem 0.35rem 1.5rem 0.3rem #a1a1a1;
     border: 1xp solid #ccc;
@@ -330,6 +290,7 @@ select {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+	object-fit: contain;
 }
 
 .item-title {
@@ -420,11 +381,19 @@ select {
 }
 
 .more-info {
-	background-color: var(--clr-blue);
 	margin-top: 3rem;
 	margin-left: 10rem;
 }
 
-.more-info:hover {
-	background-color: var(--clr-gray);
+
+.links {
+	text-decoration: none;
+	color: black;
+	font-family: var(--ff-arial);
+}
+
+.links:hover {
+	text-decoration: none;
+	color: black;
+	font-family: var(--ff-arial);
 }

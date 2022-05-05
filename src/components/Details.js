@@ -5,24 +5,25 @@ import { Container, Row, Col, Popover, OverlayTrigger, Button, Form } from 'reac
 import { useParams } from 'react-router';
 
 
+
 export const Details = () => {
   const { auction } = useParams(null);
-  const [currentAuction, setCurrentAuction] = useState({})
+  const [currentAuction, setCurrentAuction] = useState({});
 
-  const popover = (
+   const popover = (
     <Popover id="popover-basic">
       <Popover.Header as="h3">{currentAuction.items?.[0].title}</Popover.Header>
       <Popover.Body>
-        <Row className='mb-1'><strong>Contributors:</strong></Row> 
-            <div>
-              {currentAuction.items?.[0].contributors?.[0].first_name} {currentAuction.items?.[0].contributors?.[0].last_name},
-              {currentAuction.items?.[0].contributors?.[0].con_role?.[3]}
-            </div>        
+        <Row className='mb-1'><strong>Contributors:</strong></Row>
+        <div>
+          {currentAuction.items?.[0].contributors?.[0].first_name} {currentAuction.items?.[0].contributors?.[0].last_name},
+          {currentAuction.items?.[0].contributors?.[0].con_role?.[3]}
+        </div>
         <Row className='mb-1'><strong>Publisher:</strong>
           <div>
             {currentAuction.items?.[0].details?.[0].publisher}
           </div>
-         </Row>
+        </Row>
         <Row className='mb-1'><strong>Variant:</strong>
           <div>
             {currentAuction.items?.[0].details?.[0].variant}
@@ -35,13 +36,13 @@ export const Details = () => {
         </Row>
         <Row className='mb-1'><strong>Characters:</strong>
           <div>
-          {currentAuction.items?.[0].details?.[0].characters}
+            {currentAuction.items?.[0].details?.[0].characters}
           </div>
         </Row>
       </Popover.Body>
     </Popover>
   );
-  
+
   const More = () => (
     <OverlayTrigger trigger="click" placement="right" overlay={popover}>
       <Button className='more-info'> Details</Button>
@@ -60,15 +61,21 @@ export const Details = () => {
   }, [auction]);
   if (!currentAuction) return null
 
+
   return (
     <Container fluid="md">
       <Row className='justify-content-center gap-5'>
         {/* Defensive programming. Optional chaining
         https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining */}
-        <Col className='item-image' xs='12' lg='4'><img src={currentAuction.items?.[0].details?.[0].cover_image?.cover_image.replace('http://localhost:8000', 'https://8000-chadpowellv1-comicapi-tiv0x3tc1cg.ws-us43.gitpod.io/')} alt=''/></Col>
+        <Col className='item-image' xs='12' lg='4'><img src={currentAuction.items?.[0].details?.[0].cover_image?.cover_image.replace('http://localhost:8000', 'https://8000-chadpowellv1-comicapi-tiv0x3tc1cg.ws-us44.gitpod.io/')} alt='' /></Col>
         <Col className='col-item-info ' xs='12' lg='4'>
           <div className='item-title'>{currentAuction.items?.[0].title}</div>
-          <div className='item-time'>auction time left</div>
+          <div className='item-time'>
+
+
+
+
+          </div>
           <div className='bid-block'>
             <Form >
               <div className='form-section'>
