@@ -15,8 +15,7 @@ export const Details = () => {
       <Popover.Body>
         <Row className='mb-1'><strong>Contributors:</strong></Row>
         <div>
-          {currentAuction.items?.[0].contributors?.[0].first_name} {currentAuction.items?.[0].contributors?.[0].last_name},
-          {currentAuction.items?.[0].contributors?.[0].con_role?.[3]}
+          {currentAuction.items?.[0].contributors?.[0].first_name} {currentAuction.items?.[0].contributors?.[0].last_name}, {currentAuction.items?.[0].contributors?.[0].role?.[0].con_role}
         </div>
         <Row className='mb-1'><strong>Publisher:</strong>
           <div>
