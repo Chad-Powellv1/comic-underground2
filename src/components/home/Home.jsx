@@ -59,7 +59,6 @@ export function Slider() {
 						<Card.Title className='text-center'>{comic.items[0].title}</Card.Title>
 						<Card.Text className='text-center'>Issue No: {comic.items[0].details[0].issue_number}</Card.Text>
 						<Card.Text className='text-center'>Current Bid: {comic.minimum_bid}</Card.Text>
-						{/* <a href={`/details/${comic.id}`}>Take me to {comic.id}</a> */}
 					</Card.Body>
 				</Card>
 				</Link>

@@ -17,9 +17,21 @@ export const Details = () => {
         <div className='mb-2'>
           {currentAuction.items?.[0].contributors?.[0].first_name} {currentAuction.items?.[0].contributors?.[0].last_name}, {currentAuction.items?.[0].contributors?.[0].role?.[0].con_role}
         </div>
-        <Row className='mb-2'><strong>Publisher: </strong>{currentAuction.items?.[0].details?.[0].publisher}</Row>
-        <Row className='mb-2'><strong>Variant: </strong>{currentAuction.items?.[0].details?.[0].variant === "{false}" ? "No" : "Yes"}</Row>
-        <Row className='mb-2'><strong>Virgin Cover: </strong>{currentAuction.items?.[0].details?.[0].virgin_cover === "{false}" ? "No" : "Yes"}</Row>
+        <Row className='mb-2'><strong>Publisher: </strong>
+          <div className='pub'>
+            {currentAuction.items?.[0].details?.[0].publisher}
+          </div>
+        </Row>
+        <Row className='mb-2'><strong>Variant: </strong>
+          <div className='variant'>
+            {currentAuction.items?.[0].details?.[0].variant === "{false}" ? "No" : "Yes"}
+          </div>
+            </Row>
+        <Row className='mb-2'><strong>Virgin Cover: </strong>
+          <div className='v-cover'>
+            {currentAuction.items?.[0].details?.[0].virgin_cover === "{false}" ? "No" : "Yes"}
+          </div>
+            </Row>
         <Row className='mb-2'><strong>Characters:</strong>
           <div>
             {currentAuction.items?.[0].details?.[0].characters}
@@ -74,10 +86,10 @@ export const Details = () => {
             </Form>
           </div>
           <div>
-            <div className='item-issue'><strong>Issue Number:</strong> #{currentAuction.items?.[0].details?.[0].issue_number}</div>
-            <div className='item-coverDate'><strong>Cover Date:</strong> {currentAuction.items?.[0].details?.[0].cover_date}</div>
-            <div className='item-era'><strong>Comic Era:</strong> {currentAuction.items?.[0].details[0].choice}</div>
-            <div className='item-grade'><strong>Grade:</strong>{currentAuction.items?.[0].details[0].grade}</div>
+            <div className='item-issue'><strong>Issue Number :</strong> #{currentAuction.items?.issue_number}</div>
+            <div className='item-coverDate'><strong>Cover Date: </strong> {currentAuction.items?.[0].details?.[0].cover_date}</div>
+            <div className='item-era'><strong>Comic Era: </strong> {currentAuction.items?.[0].details[0].choice}</div>
+            <div className='item-grade'><strong>Grade: </strong> {currentAuction.items?.[0].details[0].grade}</div>
             <More />
           </div>
         </Col>

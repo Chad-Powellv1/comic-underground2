@@ -4,14 +4,18 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import React from 'react';
 import {useGlobalState} from '../context/GlobalState';
+import { useNavigate } from 'react-router';
 
 
-const logout = () => {
-    localStorage.clear()
-    window.location.reload();
-}
+
 
 export const Navbar = () => {
+    let navigate = useNavigate();
+    const logout = () => {
+        localStorage.clear();
+        navigate("/")
+        window.location.reload()
+    }
     const [ state ] = useGlobalState();
   return (
     <>
