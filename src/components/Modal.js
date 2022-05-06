@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../App.css'
 
 export const Modal = ({children}) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [ setIsOpen ] = useState(false);
 
   const close = () => {
     setIsOpen(false);

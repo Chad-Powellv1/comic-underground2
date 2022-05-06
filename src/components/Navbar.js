@@ -1,10 +1,10 @@
-import { AiFillWindows, AiOutlineSearch } from 'react-icons/ai';
+import { AiOutlineSearch } from 'react-icons/ai';
 import comic from '../assets/comic.png';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import React from 'react';
 import {useGlobalState} from '../context/GlobalState';
-import {AuthService} from '../services/auth.service';
+
 
 const logout = () => {
     localStorage.clear()
@@ -19,7 +19,7 @@ export const Navbar = () => {
         <div className='d-flex flex-row ml-3 p-3'>
             <div className='mr-auto'>
                 <div className='header-wrapper'>
-                    <span>Hello, </span>
+                    <span>Hello,</span>
                 </div>
             </div>
         

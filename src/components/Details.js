@@ -14,25 +14,13 @@ export const Details = () => {
       <Popover.Header as="h3">{currentAuction.items?.[0].title}</Popover.Header>
       <Popover.Body>
         <Row className='mb-1'><strong>Contributors:</strong></Row>
-        <div>
+        <div className='mb-2'>
           {currentAuction.items?.[0].contributors?.[0].first_name} {currentAuction.items?.[0].contributors?.[0].last_name}, {currentAuction.items?.[0].contributors?.[0].role?.[0].con_role}
         </div>
-        <Row className='mb-1'><strong>Publisher:</strong>
-          <div>
-            {currentAuction.items?.[0].details?.[0].publisher}
-          </div>
-        </Row>
-        <Row className='mb-1'><strong>Variant:</strong>
-          <div>
-            {currentAuction.items?.[0].details?.[0].variant}
-          </div>
-        </Row>
-        <Row className='mb-1'><strong>Virgin Cover:</strong>
-          <div>
-            {currentAuction.items?.[0].details?.[0].virgin_cover}
-          </div>
-        </Row>
-        <Row className='mb-1'><strong>Characters:</strong>
+        <Row className='mb-2'><strong>Publisher: </strong>{currentAuction.items?.[0].details?.[0].publisher}</Row>
+        <Row className='mb-2'><strong>Variant: </strong>{currentAuction.items?.[0].details?.[0].variant === "{false}" ? "No" : "Yes"}</Row>
+        <Row className='mb-2'><strong>Virgin Cover: </strong>{currentAuction.items?.[0].details?.[0].virgin_cover === "{false}" ? "No" : "Yes"}</Row>
+        <Row className='mb-2'><strong>Characters:</strong>
           <div>
             {currentAuction.items?.[0].details?.[0].characters}
           </div>
