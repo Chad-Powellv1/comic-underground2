@@ -5,7 +5,6 @@ import { Container, Row, Col, Popover, OverlayTrigger, Button, Form } from 'reac
 import { useParams } from 'react-router';
 
 
-
 export const Details = () => {
   const { auction } = useParams(null);
   const [currentAuction, setCurrentAuction] = useState({});
@@ -15,26 +14,25 @@ export const Details = () => {
       <Popover.Header as="h3">{currentAuction.items?.[0].title}</Popover.Header>
       <Popover.Body>
         <Row className='mb-1'><strong>Contributors:</strong></Row>
-        <div>
-          {currentAuction.items?.[0].contributors?.[0].first_name} {currentAuction.items?.[0].contributors?.[0].last_name},
-          {currentAuction.items?.[0].contributors?.[0].con_role?.[3]}
+        <div className='mb-2'>
+          {currentAuction.items?.[0].contributors?.[0].first_name} {currentAuction.items?.[0].contributors?.[0].last_name}, {currentAuction.items?.[0].contributors?.[0].role?.[0].con_role}
         </div>
-        <Row className='mb-1'><strong>Publisher:</strong>
-          <div>
+        <Row className='mb-2'><strong>Publisher: </strong>
+          <div className='pub'>
             {currentAuction.items?.[0].details?.[0].publisher}
           </div>
         </Row>
-        <Row className='mb-1'><strong>Variant:</strong>
-          <div>
-            {currentAuction.items?.[0].details?.[0].variant}
+        <Row className='mb-2'><strong>Variant: </strong>
+          <div className='variant'>
+            {currentAuction.items?.[0].details?.[0].variant === "{false}" ? "Yes" : "No"}
           </div>
-        </Row>
-        <Row className='mb-1'><strong>Virgin Cover:</strong>
-          <div>
-            {currentAuction.items?.[0].details?.[0].virgin_cover}
+            </Row>
+        <Row className='mb-2'><strong>Virgin Cover: </strong>
+          <div className='v-cover'>
+            {currentAuction.items?.[0].details?.[0].virgin_cover === "{false}" ? "Yes" : "No"}
           </div>
-        </Row>
-        <Row className='mb-1'><strong>Characters:</strong>
+            </Row>
+        <Row className='mb-2'><strong>Characters:</strong>
           <div>
             {currentAuction.items?.[0].details?.[0].characters}
           </div>
@@ -88,10 +86,10 @@ export const Details = () => {
             </Form>
           </div>
           <div>
-            <div className='item-issue'><strong>Issue Number:</strong> #{currentAuction.items?.[0].details?.[0].issue_number}</div>
-            <div className='item-coverDate'><strong>Cover Date:</strong> {currentAuction.items?.[0].details?.[0].cover_date}</div>
-            <div className='item-era'><strong>Comic Era:</strong> {currentAuction.items?.[0].details[0].choice}</div>
-            <div className='item-grade'><strong>Grade:</strong>{currentAuction.items?.[0].details[0].grade}</div>
+            <div className='item-issue'><strong>Issue Number :</strong> #{currentAuction.items?.[0].details?.[0].issue_number}</div>
+            <div className='item-coverDate'><strong>Cover Date: </strong> {currentAuction.items?.[0].details?.[0].cover_date}</div>
+            <div className='item-era'><strong>Comic Era: </strong> {currentAuction.items?.[0].details[0].choice}</div>
+            <div className='item-grade'><strong>Grade: </strong> {currentAuction.items?.[0].details[0].grade}</div>
             <More />
           </div>
         </Col>

@@ -10,7 +10,8 @@ import React, {
   
   const initialState = {
     currentUser: user ? jwtDecode(user.access) : null,
-    currentUserToken: user ? user.access : null
+    currentUserToken: user ? user.access : null,
+
   }
   
   const GlobalStateContext = createContext(initialState);
