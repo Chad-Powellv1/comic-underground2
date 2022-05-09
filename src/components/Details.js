@@ -24,12 +24,12 @@ export const Details = () => {
         </Row>
         <Row className='mb-2'><strong>Variant: </strong>
           <div className='variant'>
-            {currentAuction.items?.[0].details?.[0].variant === "{false}" ? "No" : "Yes"}
+            {currentAuction.items?.[0].details?.[0].variant === "{false}" ? "Yes" : "No"}
           </div>
             </Row>
         <Row className='mb-2'><strong>Virgin Cover: </strong>
           <div className='v-cover'>
-            {currentAuction.items?.[0].details?.[0].virgin_cover === "{false}" ? "No" : "Yes"}
+            {currentAuction.items?.[0].details?.[0].virgin_cover === "{false}" ? "Yes" : "No"}
           </div>
             </Row>
         <Row className='mb-2'><strong>Characters:</strong>
@@ -86,7 +86,7 @@ export const Details = () => {
             </Form>
           </div>
           <div>
-            <div className='item-issue'><strong>Issue Number :</strong> #{currentAuction.items?.issue_number}</div>
+            <div className='item-issue'><strong>Issue Number :</strong> #{currentAuction.items?.[0].details?.[0].issue_number}</div>
             <div className='item-coverDate'><strong>Cover Date: </strong> {currentAuction.items?.[0].details?.[0].cover_date}</div>
             <div className='item-era'><strong>Comic Era: </strong> {currentAuction.items?.[0].details[0].choice}</div>
             <div className='item-grade'><strong>Grade: </strong> {currentAuction.items?.[0].details[0].grade}</div>

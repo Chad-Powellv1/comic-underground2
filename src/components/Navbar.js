@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router';
 
 
 
+
 export const Navbar = () => {
     let navigate = useNavigate();
     const logout = () => {
@@ -23,7 +24,7 @@ export const Navbar = () => {
         <div className='d-flex flex-row ml-3 p-3'>
             <div className='mr-auto'>
                 <div className='header-wrapper'>
-                    <span>Hello,</span>
+                    <span>Hello, </span>
                 </div>
             </div>
         
