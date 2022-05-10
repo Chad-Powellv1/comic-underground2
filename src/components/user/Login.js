@@ -9,7 +9,7 @@ import { Modal } from '../Modal';
 
 const Login = ({isOpen,setIsOpen, close}) => {
     let navigate = useNavigate();
-    const [state, dispatch] = useGlobalState();
+    const [,dispatch] = useGlobalState();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
