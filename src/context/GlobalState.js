@@ -21,7 +21,7 @@ import React, {
     const [state, dispatch] = useReducer(
       (state, newValue) => ({ ...state, ...newValue }),
       initialState
-    );
+    );    
   
     return (
       <GlobalStateContext.Provider value={state}>
