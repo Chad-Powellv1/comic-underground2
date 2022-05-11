@@ -4,6 +4,7 @@ export const REGISTER_ENDPOINT = "user/signup/"
 export const REFRESH_ENDPOINT = "token/refresh/"
 export const AUCTION =  "auction/";
 export const BID = "bid/";
+export const USER = 'user/';
 
 
 
