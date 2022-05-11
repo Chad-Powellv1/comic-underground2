@@ -36,7 +36,7 @@ client.interceptors.response.use(
           return client
             .post(REFRESH_ENDPOINT, { refresh: user.refresh })
             .then((response) => {
-
+              
               localStorage.setItem('user', response.data);
 
               client.defaults.headers['Authorization'] = "Bearer " + response.data.access;

@@ -2,7 +2,7 @@ import React from "react"
 import { useGlobalState } from "../../context/GlobalState";
 import { Modal } from '../Modal';
 const Profile = () => {
-  const [ state, dispatch ] = useGlobalState();
+  const [ state, dispatch] = useGlobalState();
 
   return (
     <Modal>

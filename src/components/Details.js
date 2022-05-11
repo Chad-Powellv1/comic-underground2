@@ -1,15 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { AUCTION } from '../services/auth.constants';
+import { AUCTION, BID } from '../services/auth.constants';
 import request from '../services/api.request';
+import { useGlobalState } from '../context/GlobalState';
 import { Container, Row, Col, Popover, OverlayTrigger, Button, Form } from 'react-bootstrap'
 import { useParams } from 'react-router';
+import moment from 'moment';
 
 
 export const Details = () => {
   const { auction } = useParams(null);
   const [currentAuction, setCurrentAuction] = useState({});
+  const [now, setNow] = useState();
+  const endDate = moment(currentAuction.close_date);
+  const [state, dispatch] = useGlobalState();
+  const [highestBid, setHighestBid] = useState({});
+  const [bid, setBid] = useState({
+    bidder: state.currentUser.user_id,
+    bid_amount: 0,
+    auction: currentAuction
+  });
 
-   const popover = (
+  console.log('CURRENT AUCTION: ', currentAuction)
+
+  const popover = (
     <Popover id="popover-basic">
       <Popover.Header as="h3">{currentAuction.items?.[0].title}</Popover.Header>
       <Popover.Body>
@@ -26,12 +39,12 @@ export const Details = () => {
           <div className='variant'>
             {currentAuction.items?.[0].details?.[0].variant === "{false}" ? "Yes" : "No"}
           </div>
-            </Row>
+        </Row>
         <Row className='mb-2'><strong>Virgin Cover: </strong>
           <div className='v-cover'>
             {currentAuction.items?.[0].details?.[0].virgin_cover === "{false}" ? "Yes" : "No"}
           </div>
-            </Row>
+        </Row>
         <Row className='mb-2'><strong>Characters:</strong>
           <div>
             {currentAuction.items?.[0].details?.[0].characters}
@@ -47,17 +60,74 @@ export const Details = () => {
     </OverlayTrigger>
   );
 
+  const handleChange = (e) => {
+    setBid({
+      ...bid,
+      [e.target.name]: e.target.value
+    })
+  };
+
+  let handleBid = async (e,currentUser) => {
+    e.preventDefault();
+    let nextBid = new FormData();
+    nextBid.append('bidder', state.currentUser.user_id);
+    nextBid.append('bid_amount', bid.bid_amount);
+    nextBid.append('auction', currentAuction.id);
+
+    let resp = request({
+      url: BID,
+      method: 'post',
+      data: nextBid,
+    })
+    resp.then((resp) => {
+      setBid(resp.data);
+      window.location.reload();
+    })
+  };
 
   useEffect(() => {
-    if (auction) {
-      request({ url: AUCTION + auction + '/', method: 'get' })
-        .then(resp => {
-          console.log('FROM USEEFFECT IN DETAILS', resp.data)
-          setCurrentAuction(resp.data)
-        });
+    // Get auction data only.
+    request({ url: AUCTION + auction + '/', method: 'get' })
+      .then(resp => {
+        setCurrentAuction(resp.data)
+      });
+
+    // Function to get the highest bid
+    const getHighestBid = () => request({ url: `auction/` + auction + '/highest-bid', method: 'get' })
+      .then(resp => {
+        setHighestBid(resp.data)
+      });
+
+    getHighestBid()
+    const pollData = setInterval(() => {
+      getHighestBid()
+    }, 15 * 1000)
+
+    const interval = setInterval(() => {
+      setNow(moment());
+    }, 15 * 1000);
+
+    return () => {
+      clearInterval(interval)
+      clearInterval(pollData)
     }
   }, [auction]);
+
   if (!currentAuction) return null
+
+  const calcTimeLeft = () => {
+    const currentTime = now;
+    const timeDiff = endDate.diff(currentTime)
+    const duration = moment.duration(timeDiff);
+    const hours = duration.asHours();
+    // console.log(timeDiff)
+    if (hours > 0) {
+      return moment(timeDiff).format('D [days] hh:mm:ss');
+    }
+    return 'Auction has ended.'
+  }
+
+
 
 
   return (
@@ -68,21 +138,29 @@ export const Details = () => {
         <Col className='item-image' xs='12' lg='4'><img src={currentAuction.items?.[0].details?.[0].cover_image?.cover_image.replace('http://localhost:8000', 'https://8000-chadpowellv1-comicapi-tiv0x3tc1cg.ws-us44.gitpod.io/')} alt='' /></Col>
         <Col className='col-item-info ' xs='12' lg='4'>
           <div className='item-title'>{currentAuction.items?.[0].title}</div>
-          <div className='item-time'>
-
-
-
-
-          </div>
+          <div className='item-time'>{calcTimeLeft()}</div>
           <div className='bid-block'>
-            <Form >
+            <Form onSubmit={handleBid} >
               <div className='form-section'>
-                <div className='current-bid'>Current Bid: ${currentAuction.minimum_bid}</div>
+                <div className='current-bid'>Current Bid: ${highestBid?.bid_amount}</div>
+                <div className='current-bid'>Highest Bidder: {highestBid?.bidder?.[0].username}</div>
                 <label htmlFor='bid-input' className='enter-bid'>Enter bid:</label>
-                <input id='bid-input' className='bid-input' type='text' />
+                <input id='bid-input'
+                  className='bid-input'
+                  type='text'
+                  value={bid.bid_amount}
+                  name='bid_amount'
+                  onChange={handleChange}
+
+                />
                 <div className='min-bid'>Enter US $</div>
               </div>
-              <input className='place-bid' type='submit' value='Place bid' />
+              <button
+                className='place-bid'
+                type='submit'
+                value='Place bid'>
+                Place Bid
+              </button>
             </Form>
           </div>
           <div>

@@ -1,12 +1,6 @@
-import React, { useState } from 'react';
-import '../App.css'
+import '../App.css';
 
-export const Modal = ({children}) => {
-  const [ setIsOpen ] = useState(false);
-
-  const close = () => {
-    setIsOpen(false);
-  }
+export const Modal = ({ children }) => {
 
     return (
         <div className='modal'>
