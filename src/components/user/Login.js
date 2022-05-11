@@ -7,12 +7,12 @@ import React, { useState } from "react";
 import jwtDecode from "jwt-decode";
 import { Modal } from '../Modal';
 
-const Login = ({isOpen,setIsOpen, close}) => {
+const Login = ({ isOpen, setIsOpen }) => {
     let navigate = useNavigate();
-    const [,dispatch] = useGlobalState();
+    const [state,dispatch] = useGlobalState();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
+    
 
     const handleLogin = (e) => {
         e.preventDefault();
