@@ -13,11 +13,14 @@ export const Details = () => {
   const [now, setNow] = useState();
   const endDate = moment(currentAuction.close_date);
   const [state, dispatch] = useGlobalState();
+  const [highestBid, setHighestBid] = useState({});
   const [bid, setBid] = useState({
     bidder: state.currentUser.user_id,
-    bid_amount: [],
-    auction: currentAuction.items?.[0]
+    bid_amount: 0,
+    auction: currentAuction
   });
+
+  console.log('CURRENT AUCTION: ', currentAuction)
 
   const popover = (
     <Popover id="popover-basic">
@@ -57,37 +60,56 @@ export const Details = () => {
     </OverlayTrigger>
   );
 
-  let handleBid = async (e) => {
+  const handleChange = (e) => {
+    setBid({
+      ...bid,
+      [e.target.name]: e.target.value
+    })
+  };
+
+  let handleBid = async (e,currentUser) => {
     e.preventDefault();
     let nextBid = new FormData();
     nextBid.append('bidder', state.currentUser.user_id);
     nextBid.append('bid_amount', bid.bid_amount);
-    nextBid.append('auction', bid.currentAuction);
+    nextBid.append('auction', currentAuction.id);
 
-    let resp = await request ({
-      url: BID + '/',
+    let resp = request({
+      url: BID,
       method: 'post',
       data: nextBid,
     })
-      .then((resp) => 
-        setBid(resp.data));
-    window.location.reload();
+    resp.then((resp) => {
+      setBid(resp.data);
+      window.location.reload();
+    })
   };
 
+  useEffect(() => {
+    // Get auction data only.
+    request({ url: AUCTION + auction + '/', method: 'get' })
+      .then(resp => {
+        setCurrentAuction(resp.data)
+      });
 
-  useEffect((nextBid) => {
-    if (auction) {
-      request({ url: AUCTION + auction + '/', method: 'get' })
-        .then(resp => {
-          console.log('FROM USEEFFECT IN DETAILS', resp.data)
-          setCurrentAuction(resp.data)
-        });
-    }
+    // Function to get the highest bid
+    const getHighestBid = () => request({ url: `auction/` + auction + '/highest-bid', method: 'get' })
+      .then(resp => {
+        setHighestBid(resp.data)
+      });
+
+    getHighestBid()
+    const pollData = setInterval(() => {
+      getHighestBid()
+    }, 15 * 1000)
+
     const interval = setInterval(() => {
       setNow(moment());
-    }, 1000);
+    }, 15 * 1000);
+
     return () => {
       clearInterval(interval)
+      clearInterval(pollData)
     }
   }, [auction]);
 
@@ -98,7 +120,7 @@ export const Details = () => {
     const timeDiff = endDate.diff(currentTime)
     const duration = moment.duration(timeDiff);
     const hours = duration.asHours();
-    console.log(timeDiff)
+    // console.log(timeDiff)
     if (hours > 0) {
       return moment(timeDiff).format('D [days] hh:mm:ss');
     }
@@ -118,15 +140,27 @@ export const Details = () => {
           <div className='item-title'>{currentAuction.items?.[0].title}</div>
           <div className='item-time'>{calcTimeLeft()}</div>
           <div className='bid-block'>
-            <Form >
+            <Form onSubmit={handleBid} >
               <div className='form-section'>
-                <div className='current-bid'>Current Bid: ${currentAuction.minimum_bid}</div>
+                <div className='current-bid'>Current Bid: ${highestBid?.bid_amount}</div>
+                <div className='current-bid'>Highest Bidder: {highestBid?.bidder?.[0].username}</div>
                 <label htmlFor='bid-input' className='enter-bid'>Enter bid:</label>
-                <input id='bid-input' className='bid-input' type='text' />
+                <input id='bid-input'
+                  className='bid-input'
+                  type='text'
+                  value={bid.bid_amount}
+                  name='bid_amount'
+                  onChange={handleChange}
+
+                />
                 <div className='min-bid'>Enter US $</div>
               </div>
-              <button className='place-bid' type='submit' value='Place bid'
-                onClick={handleBid}>Place Bid</button>
+              <button
+                className='place-bid'
+                type='submit'
+                value='Place bid'>
+                Place Bid
+              </button>
             </Form>
           </div>
           <div>

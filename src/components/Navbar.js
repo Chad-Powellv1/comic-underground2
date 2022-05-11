@@ -7,9 +7,6 @@ import {useGlobalState} from '../context/GlobalState';
 import { useNavigate } from 'react-router';
 
 
-
-
-
 export const Navbar = () => {
     let navigate = useNavigate();
     const logout = () => {
@@ -23,9 +20,10 @@ export const Navbar = () => {
         { state && (
         <div className='d-flex flex-row ml-3 p-3'>
             <div className='mr-auto'>
+                { state && (
                 <div className='header-wrapper'>
-                    <span>Hello, </span>
-                </div>
+                    <span>Hello, {state.currentUser.username} </span>
+                </div>)}
             </div>
         
         <div className='header-link'>
