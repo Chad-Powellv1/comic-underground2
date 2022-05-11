@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { AUCTION } from '../services/auth.constants';
+import { AUCTION, BID } from '../services/auth.constants';
 import request from '../services/api.request';
+import { useGlobalState } from '../context/GlobalState';
 import { Container, Row, Col, Popover, OverlayTrigger, Button, Form } from 'react-bootstrap'
 import { useParams } from 'react-router';
 import moment from 'moment';
@@ -9,19 +10,14 @@ import moment from 'moment';
 export const Details = () => {
   const { auction } = useParams(null);
   const [currentAuction, setCurrentAuction] = useState({});
-  const [now, setNow] = useState(moment());
-
+  const [now, setNow] = useState();
   const endDate = moment(currentAuction.close_date);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setNow(moment());
-    }, 1000);
-
-    return () => {
-      clearInterval(interval)
-    }
-  }, [endDate]);
+  const [state, dispatch] = useGlobalState();
+  const [bid, setBid] = useState({
+    bidder: state.currentUser.user_id,
+    bid_amount: [],
+    auction: currentAuction.items?.[0]
+  });
 
   const popover = (
     <Popover id="popover-basic">
@@ -61,14 +57,37 @@ export const Details = () => {
     </OverlayTrigger>
   );
 
+  let handleBid = async (e) => {
+    e.preventDefault();
+    let nextBid = new FormData();
+    nextBid.append('bidder', state.currentUser.user_id);
+    nextBid.append('bid_amount', bid.bid_amount);
+    nextBid.append('auction', bid.currentAuction);
 
-  useEffect(() => {
+    let resp = await request ({
+      url: BID + '/',
+      method: 'post',
+      data: nextBid,
+    })
+      .then((resp) => 
+        setBid(resp.data));
+    window.location.reload();
+  };
+
+
+  useEffect((nextBid) => {
     if (auction) {
       request({ url: AUCTION + auction + '/', method: 'get' })
         .then(resp => {
           console.log('FROM USEEFFECT IN DETAILS', resp.data)
           setCurrentAuction(resp.data)
         });
+    }
+    const interval = setInterval(() => {
+      setNow(moment());
+    }, 1000);
+    return () => {
+      clearInterval(interval)
     }
   }, [auction]);
 
@@ -87,6 +106,8 @@ export const Details = () => {
   }
 
 
+
+
   return (
     <Container fluid="md">
       <Row className='justify-content-center gap-5'>
@@ -98,13 +119,14 @@ export const Details = () => {
           <div className='item-time'>{calcTimeLeft()}</div>
           <div className='bid-block'>
             <Form >
-              <div className='form-section'> 
+              <div className='form-section'>
                 <div className='current-bid'>Current Bid: ${currentAuction.minimum_bid}</div>
                 <label htmlFor='bid-input' className='enter-bid'>Enter bid:</label>
                 <input id='bid-input' className='bid-input' type='text' />
                 <div className='min-bid'>Enter US $</div>
               </div>
-              <input className='place-bid' type='submit' value='Place bid' />
+              <button className='place-bid' type='submit' value='Place bid'
+                onClick={handleBid}>Place Bid</button>
             </Form>
           </div>
           <div>
