@@ -22,7 +22,7 @@ export const Navbar = () => {
             <div className='mr-auto'>
                 { state && (
                 <div className='header-wrapper'>
-                    <span>Hello, {state.currentUser.username} </span>
+                    <span>Hello,  </span>
                 </div>)}
             </div>
         
