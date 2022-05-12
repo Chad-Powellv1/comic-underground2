@@ -15,7 +15,7 @@ export const Details = () => {
   const [state, dispatch] = useGlobalState();
   const [highestBid, setHighestBid] = useState({});
   const [bid, setBid] = useState({
-    bidder: state.currentUser.user_id,
+    bidder: state.currentUser?.user_id,
     bid_amount: 0,
     auction: currentAuction
   });
@@ -70,7 +70,7 @@ export const Details = () => {
   let handleBid = async (e,currentUser) => {
     e.preventDefault();
     let nextBid = new FormData();
-    nextBid.append('bidder', state.currentUser.user_id);
+    nextBid.append('bidder', state.currentUser?.username);
     nextBid.append('bid_amount', bid.bid_amount);
     nextBid.append('auction', currentAuction.id);
 
@@ -96,11 +96,20 @@ export const Details = () => {
     const getHighestBid = () => request({ url: `auction/` + auction + '/highest-bid', method: 'get' })
       .then(resp => {
         setHighestBid(resp.data)
+        console.log('USER DATA: ', resp.data)
       });
-
     getHighestBid()
+
+    // // Function to get highest bidder
+    // const getHighestBidder = () => request({ url: `users/` + state.currentUser?.id + '/highest-bidder', method: 'get' }) 
+    //   .then(resp => {
+    //     setHighestBid(resp.data?.username)
+    //   });
+    // getHighestBidder();
+    
     const pollData = setInterval(() => {
-      getHighestBid()
+      getHighestBid();
+      // getHighestBidder();
     }, 15 * 1000)
 
     const interval = setInterval(() => {
@@ -123,11 +132,9 @@ export const Details = () => {
     // console.log(timeDiff)
     if (hours > 0) {
       return moment(timeDiff).format('D [days] hh:mm:ss');
-    }
+    } 
     return 'Auction has ended.'
   }
-
-
 
 
   return (
@@ -143,7 +150,7 @@ export const Details = () => {
             <Form onSubmit={handleBid} >
               <div className='form-section'>
                 <div className='current-bid'>Current Bid: ${highestBid?.bid_amount}</div>
-                <div className='current-bid'>Highest Bidder: {highestBid?.bidder?.[0].username}</div>
+                {/* <div className='current-bid'>Highest Bidder: {highestBid?.bidder?.[0].username}</div> */}
                 <label htmlFor='bid-input' className='enter-bid'>Enter bid:</label>
                 <input id='bid-input'
                   className='bid-input'
