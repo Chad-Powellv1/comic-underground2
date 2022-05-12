@@ -41,9 +41,6 @@ export const Navbar = () => {
             <span className="header-sell">Logout</span>
             </button>)}
             <Link to='/register' style={{textDecoration: 'none', fontFamily: 'var(--ff-arial)'}}><span className="header-sell">Register</span></Link>
-            {/* <Link to='/sell' style={{textDecoration: 'none', fontFamily: 'var(--ff-arial)'}}><span className="header-sell">Sell</span></Link>
-            <Link to='/watchlist' style={{textDecoration: 'none', fontFamily: 'var(--ff-arial)'}}><span className="header-sell">Watchlist</span></Link> */}
-            <Link to="/about" style={{textDecoration: 'none', color:'black'}}>About Us</Link>
         </div>
         </div>)}
 
