@@ -103,11 +103,11 @@ export const Details = () => {
   
     const pollData = setInterval(() => {
       getHighestBid();
-    }, 15 * 1000)
+    }, 1000)
 
     const interval = setInterval(() => {
       setNow(moment());
-    }, 15 * 1000);
+    }, 1000);
 
     return () => {
       clearInterval(interval)

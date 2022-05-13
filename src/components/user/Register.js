@@ -25,7 +25,7 @@ const Register = () => {
   const handleRegister = (e) => {
     e.preventDefault();
     AuthService.register(user);
-    navigate('/profile')
+    navigate('/')
   }
 
   return (
