@@ -1,18 +1,20 @@
 import React from 'react';
 import image from '../../assets/banner.jpg';
+import { Row, Col } from 'react-bootstrap';
+import '../../App.css'
 
 export const Banner = () => {
   return (
-    <div className='image-container'>
+    <Row className='image-container'>
         <img src={image} alt='banner'
             style={{
                 width:'100%',
                 height:'12.5rem',
             }}  />
-        <div className='centered text-centered'>
-            <h1 className='text'>Comic Underground</h1>
-            <h4 className='text2'>Lose yourself in an adventure today!</h4>
-        </div>
-    </div>
+        <Row className='text-centered'>
+            <Col className='text mx-auto'>Comic Underground</Col>
+            <Col className='text2'>Lose yourself in an adventure today!</Col>
+        </Row>
+    </Row>
   )
 }

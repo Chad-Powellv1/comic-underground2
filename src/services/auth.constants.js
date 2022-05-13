@@ -1,10 +1,10 @@
-export const API_URL =  "https://8000-chadpowellv1-comicapi-tiv0x3tc1cg.ws-us44.gitpod.io/";
+export const API_URL = process.env.REACT_APP_API_URL
 export const LOGIN_ENDPOINT = "user/login/"
 export const REGISTER_ENDPOINT = "user/signup/"
 export const REFRESH_ENDPOINT = "token/refresh/"
-export const AUCTION =  "auction/";
-export const BID = "bid/";
-export const USER = 'user/';
+export const AUCTION =  "auction/"
+export const BID = "bid/"
+export const USER = 'user/'
 
 
 

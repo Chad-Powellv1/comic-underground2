@@ -67,10 +67,10 @@ export const Details = () => {
     })
   };
 
-  let handleBid = async (e,currentUser) => {
+  let handleBid = async (e) => {
     e.preventDefault();
     let nextBid = new FormData();
-    nextBid.append('bidder', state.currentUser?.username);
+    nextBid.append('bidder', state.currentUser?.user_id);
     nextBid.append('bid_amount', bid.bid_amount);
     nextBid.append('auction', currentAuction.id);
 
@@ -100,16 +100,9 @@ export const Details = () => {
       });
     getHighestBid()
 
-    // // Function to get highest bidder
-    // const getHighestBidder = () => request({ url: `users/` + state.currentUser?.id + '/highest-bidder', method: 'get' }) 
-    //   .then(resp => {
-    //     setHighestBid(resp.data?.username)
-    //   });
-    // getHighestBidder();
-    
+  
     const pollData = setInterval(() => {
       getHighestBid();
-      // getHighestBidder();
     }, 15 * 1000)
 
     const interval = setInterval(() => {
@@ -142,7 +135,7 @@ export const Details = () => {
       <Row className='justify-content-center gap-5'>
         {/* Defensive programming. Optional chaining
         https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining */}
-        <Col className='item-image' xs='12' lg='4'><img src={currentAuction.items?.[0].details?.[0].cover_image?.cover_image.replace('http://localhost:8000', 'https://8000-chadpowellv1-comicapi-tiv0x3tc1cg.ws-us44.gitpod.io/')} alt='' /></Col>
+        <Col className='item-image' xs='12' lg='4'><img src={currentAuction.items?.[0].details?.[0].cover_image?.cover_image.replace('http://localhost:8000', 'https://8000-chadpowellv1-comicapi-tiv0x3tc1cg.ws-us45.gitpod.io/')} alt='' /></Col>
         <Col className='col-item-info ' xs='12' lg='4'>
           <div className='item-title'>{currentAuction.items?.[0].title}</div>
           <div className='item-time'>{calcTimeLeft()}</div>
@@ -150,7 +143,7 @@ export const Details = () => {
             <Form onSubmit={handleBid} >
               <div className='form-section'>
                 <div className='current-bid'>Current Bid: ${highestBid?.bid_amount}</div>
-                {/* <div className='current-bid'>Highest Bidder: {highestBid?.bidder?.[0].username}</div> */}
+                <div className='current-bid'>Highest Bidder: {highestBid?.bidder?.username}</div>
                 <label htmlFor='bid-input' className='enter-bid'>Enter bid:</label>
                 <input id='bid-input'
                   className='bid-input'
