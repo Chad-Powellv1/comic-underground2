@@ -4,14 +4,12 @@ import request from '../services/api.request';
 import { useGlobalState } from '../context/GlobalState';
 import { Container, Row, Col, Popover, OverlayTrigger, Button, Form } from 'react-bootstrap'
 import { useParams } from 'react-router';
-import moment from 'moment';
+import { AuctionTimer } from './AuctionTimer';
 
 
 export const Details = () => {
   const { auction } = useParams(null);
   const [currentAuction, setCurrentAuction] = useState({});
-  const [now, setNow] = useState();
-  const endDate = moment(currentAuction.close_date);
   const [state, dispatch] = useGlobalState();
   const [highestBid, setHighestBid] = useState({});
   const [bid, setBid] = useState({
@@ -20,7 +18,6 @@ export const Details = () => {
     auction: currentAuction
   });
 
-  console.log('CURRENT AUCTION: ', currentAuction)
 
   const popover = (
     <Popover id="popover-basic">
@@ -100,34 +97,16 @@ export const Details = () => {
       });
     getHighestBid()
 
-  
-    const pollData = setInterval(() => {
-      getHighestBid();
-    }, 1000)
-
-    const interval = setInterval(() => {
-      setNow(moment());
-    }, 1000);
+      const pollData = setInterval(() => {
+        getHighestBid();
+      },60 * 1000)
 
     return () => {
-      clearInterval(interval)
       clearInterval(pollData)
     }
   }, [auction]);
 
   if (!currentAuction) return null
-
-  const calcTimeLeft = () => {
-    const currentTime = now;
-    const timeDiff = endDate.diff(currentTime)
-    const duration = moment.duration(timeDiff);
-    const hours = duration.asHours();
-    // console.log(timeDiff)
-    if (hours > 0) {
-      return moment(timeDiff).format('D [days] hh:mm:ss');
-    } 
-    return 'Auction has ended.'
-  }
 
 
   return (
@@ -135,10 +114,10 @@ export const Details = () => {
       <Row className='justify-content-center gap-5'>
         {/* Defensive programming. Optional chaining
         https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining */}
-        <Col className='item-image' xs='12' lg='4'><img src={currentAuction.items?.[0].details?.[0].cover_image?.cover_image.replace('http://localhost:8000', 'https://8000-chadpowellv1-comicapi-tiv0x3tc1cg.ws-us45.gitpod.io/')} alt='' /></Col>
+        <Col className='item-image' xs='12' lg='4'><img src={currentAuction.items?.[0].details?.[0].cover_image?.cover_image} alt='' /></Col>
         <Col className='col-item-info ' xs='12' lg='4'>
           <div className='item-title'>{currentAuction.items?.[0].title}</div>
-          <div className='item-time'>{calcTimeLeft()}</div>
+          <div className='item-time'>{<AuctionTimer currentAuction={currentAuction} />}</div>
           <div className='bid-block'>
             <Form onSubmit={handleBid} >
               <div className='form-section'>

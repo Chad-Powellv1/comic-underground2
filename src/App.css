@@ -413,3 +413,11 @@ select {
 	color: black;
 	font-family: var(--ff-arial);
 }
+
+.splide__arrow.splide__arrow--next {
+	background-color: var(--clr-blue) !important;
+}
+
+.splide__arrow.splide__arrow--prev {
+	background-color: var(--clr-blue) !important;
+}
