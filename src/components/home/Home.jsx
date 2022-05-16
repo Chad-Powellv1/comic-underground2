@@ -12,12 +12,13 @@ export function Slider() {
 	const [comics, setComics] = useState([]);
 
 	useEffect(() => {
-		request({ url: AUCTION, method: 'get' }).then(resp => {
-			setComics(resp.data);
-		});
+		request({ url: AUCTION, method: 'get' })
+			.then(resp => {
+				localStorage.setItem('comics', JSON.stringify(resp.data))
+				setComics(resp.data);
+			});
 	}, []);
 
-	console.log('comics: ', comics);
 
 	let sliderOptions = {
 		rewind: true,
@@ -52,10 +53,7 @@ export function Slider() {
 					>
 						<Card.Img
 							className='image-card'
-							src={comic.items?.[0].details?.[0].cover_image.cover_image.replace(
-								'http://localhost:8000',
-								'https://8000-chadpowellv1-comicapi-tiv0x3tc1cg.ws-us45.gitpod.io/'
-							)}
+							src={comic.items?.[0].details?.[0].cover_image.cover_image}
 						/>
 
 						<Card.Body>

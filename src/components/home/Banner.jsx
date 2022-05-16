@@ -5,16 +5,14 @@ import '../../App.css'
 
 export const Banner = () => {
   return (
-    <Row className='image-container'>
+    <Row className='image-container justify-content-center text-centered'>
         <img src={image} alt='banner'
             style={{
                 width:'100%',
                 height:'12.5rem',
             }}  />
-        <Row className='text-centered'>
-            <Col className='text mx-auto'>Comic Underground</Col>
-            <Col className='text2'>Lose yourself in an adventure today!</Col>
-        </Row>
+            <Col className='xs-6 lg-6 text mx-auto'>Comic Underground</Col>
+            <Col className='xs-6 text2 mx-auto'>Lose yourself in an adventure today!</Col>
     </Row>
   )
 }
