@@ -19,19 +19,19 @@ export const Navbar = () => {
         last_name: '',
     });
 
-    // useEffect(() => {
-    //     request({ 
-    //         url: API_URL + 
-    //         'users/' + 
-    //         state.currentUser?.user_id,
-    //         method: 'get',
-    //         data: name,
-    //     })
-    //         .then(resp => {
-    //             setName(resp.data)
-    //             localStorage.setItem('name', resp.data.username)
-    //         })
-    // }, [])
+    useEffect(() => {
+        request({ 
+            url: API_URL + 
+            'users/' + 
+            state.currentUser?.user_id,
+            method: 'get',
+            data: name,
+        })
+            .then(resp => {
+                setName(resp.data)
+                localStorage.setItem('name', resp.data.username)
+            })
+    }, [])
 
     const logout = () => {
         localStorage.clear();
